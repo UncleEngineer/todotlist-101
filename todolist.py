@@ -26,9 +26,7 @@ class ToDoApp:
         self.remove_button = tk.Button(root, text="ลบรายการที่เลือก", width=15, command=self.remove_task)
         self.remove_button.pack(pady=5)
 
-        # ปุ่มบันทึกถูกคงไว้เผื่อผู้ใช้ต้องการกดเองด้วย (ไม่จำเป็น)
-        self.save_button = tk.Button(root, text="บันทึกรายการ", width=15, command=self.save_tasks)
-        self.save_button.pack(pady=5)
+        
 
         self.load_tasks()
 
