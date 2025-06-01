@@ -26,6 +26,7 @@ class ToDoApp:
         self.remove_button = tk.Button(root, text="ลบรายการที่เลือก", width=15, command=self.remove_task)
         self.remove_button.pack(pady=5)
 
+        # ปุ่มบันทึกถูกคงไว้เผื่อผู้ใช้ต้องการกดเองด้วย (ไม่จำเป็น)
         self.save_button = tk.Button(root, text="บันทึกรายการ", width=15, command=self.save_tasks)
         self.save_button.pack(pady=5)
 
@@ -37,6 +38,7 @@ class ToDoApp:
             self.tasks.append(task)
             self.update_listbox()
             self.task_entry.delete(0, tk.END)
+            self.save_tasks()  # ✅ บันทึกทันทีเมื่อเพิ่ม
         else:
             messagebox.showwarning("คำเตือน", "กรุณากรอกงานก่อนเพิ่ม")
 
@@ -46,6 +48,7 @@ class ToDoApp:
             index = selected[0]
             del self.tasks[index]
             self.update_listbox()
+            self.save_tasks()  # ✅ บันทึกทันทีเมื่อมีการลบ
         else:
             messagebox.showwarning("คำเตือน", "กรุณาเลือกรายการที่จะลบ")
 
@@ -58,7 +61,6 @@ class ToDoApp:
         with open("tasks.txt", "w", encoding="utf-8") as f:
             for task in self.tasks:
                 f.write(task + "\n")
-        messagebox.showinfo("บันทึกแล้ว", "บันทึกรายการเรียบร้อยแล้ว")
 
     def load_tasks(self):
         if os.path.exists("tasks.txt"):
